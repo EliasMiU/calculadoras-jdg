@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/index.js"></script>
+    <script src="/js/calculate.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <section class="py-5">
+        <div class="container">
+            <h1>Calculaddoras de Envios JDG Car</h1>
+        </div>
+    </section>
+
+
+    <section class="calculadora-maritima py-5">
+        <div class="container py-5">
+            <h2>Calculo de Envios Aereos</h2>
+            <div class="row pt-4 pb-5">
+                <div class="col-12">
+                    <form id="cal-maritimo" class="row g-3" >
+                        <div class="col-md-4">
+                          <label for="select-origen" class="form-label">Origen de envió</label>
+                          <select id="select-origen" class="form-select" aria-label="Default select example">
+                            <option value="0" selected>Miami FL</option>
+                            <option value="1">New England (Ma, Nh, RI, VT, ME)</option>
+                            <option value="2">Triestatal (CI, NY, NJ)</option>
+                            <option value="3">Wes Florida (Tampa, Naples, Orlando)</option>
+                            <option value="resto-usa">Resto de USA</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="select-destino" class="form-label">Destino de envió</label>
+                          <select id="select-destino" class="form-select" aria-label="Default select example">
+                            <option value="0" selected>Gran Caracas</option>
+                            <option value="1">Resto del Pais</option>
+                          </select>
+                        </div>
+                        <div class="col-4 col-md-4">
+                          <label for="pesoReal" class="form-label">Peso Real</label>
+                          <input id="pesoReal" type="number" class="form-control" value="0">
+                        </div>
+                        <div class="col-4 col-md-4">
+                          <label for="inputAlto" class="form-label">Alto in</label>
+                          <input id="inputAlto" type="number" class="form-control" value="12">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="inputAncho" class="form-label">Ancho in</label>
+                            <input id="inputAncho" type="number" class="form-control" value="12">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="inputLargo" class="form-label">Largo in</label>
+                            <input id="inputLargo" type="number" class="form-control"  value="12">
+                        </div>
+                        <div class="col-md-4">
+                          <label for="pre-estimado" class="form-label">Precio estimado</label>
+                          <input id="pre-estimado" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="fts" class="form-label">Dimensiones</label>
+                          <input id="fts" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="piesCubico" class="form-label">Pies Cúbicos</label>
+                          <input id="piesCubico" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-4">
+                          <a id="btn-comprar" href="/" class="btn btn-dark">Comprar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container py-5">
+            <h2>Calculo de Envios Aereos</h2>
+            <div class="row pt-4 pb-5">
+                <div class="col-12">
+                    <form id="cal-aereo" class="row g-3">
+                        <div class="col-4">
+                            <label for="origen-envio" class="form-label">Origen de envío</label>
+                            <select name="ubicacion" id="origen-envio" class="form-select" aria-label="Default select example">
+                                    <option value="4" selected>Miami FL</option>
+                                    <option value="7.4">New England - Triestatal</option>
+                                    <option value="8">Otras Ciudades</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="destino-envio" class="form-label">Destino de envío</label>
+                            <select id="destino-envio" class="form-select" aria-label="Selector de Pais de Envio">
+                              <option value="0" selected>Venezuela</option>
+                              <option value="mexico">México</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="" class="form-label">Tipo de envío</label>
+                            <select name="ubicacion" id="tipo-envio" class="form-select">
+                                <option value="aereo">Aereo</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label for="inputAddress" class="form-label">Alto (in)</label>
+                            <input type="number" value="10" id="alto" class="form-control">
+                          
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label for="inputAddress" class="form-label">Ancho (in)</label>
+                            <input type="number" value="10" id="largo" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label for="inputAddress" class="form-label">Largo (in)</label>
+                            <input type="number" id="ancho" value="10" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label for="peso-real" class="form-label">Peso Real (Libras)</label>
+                            <input type="number" value="0" id="peso-real" class="form-control">
+                        </div>
+          
+                        <div class="col-4 col-md-3">
+                            <label for="peso-real" class="form-label">Precio estimado</label>
+                            <input type="twxt" id="precio-estimado" class="form-control" disabled>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <label for="pies-cubicos" class="form-label">Pies cúbicos (ft3)</label>
+                            <input type="text"  id="pies-cubicos" value="0" class="form-control" disabled>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <label for="peso-vol" id="labelPesoVol" class="form-label">Peso volumétrico</label>
+                            <input type="text"  id="peso-vol" class="form-control" disabled>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <label for="peso-real" class="form-label">Peso mayor</label>
+                            <input type="text"  id="peso-mayor" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-7">
+                            <a id="btnAereo-comprar" href="https://unabru.tk" class="btn btn-dark">Comprar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+</body>
+</html>
