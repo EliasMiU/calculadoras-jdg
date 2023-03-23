@@ -64,6 +64,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*21.05;
                     }
+                } else if( iOrigen === 4){
+                    precioEstimado = piesCubico*100;
                 }
             } else if (piesCubico >= 2.86 && piesCubico <= 4 ) {
                 if ( iOrigen === 0 ) { 
@@ -84,8 +86,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22.33;
                     }
+                } else if(iOrigen === 4){
+                    precioEstimado = piesCubico*82.70676691729323;
                 }
-
             } else if ( piesCubico > 4 && piesCubico <= 6  ) {
                 if ( iOrigen === 0 ) { 
                     if (iDestino === 0) {
@@ -105,8 +108,10 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22;
                     }
+                } else if (iOrigen === 4){
+                    precioEstimado = piesCubico*43.333333333333333;
                 }
-            } else {
+            } else if(piesCubico > 6 && piesCubico < 8) {
                 if ( iOrigen === 0 ) {
                     if (iDestino === 0) { 
                         precioEstimado = piesCubico*16; 
@@ -125,6 +130,12 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22;
                     }
+                } else if (iOrigen === 4) {
+                    precioEstimado = piesCubico*45.7516339869281;
+                }
+            } else {
+                if(iOrigen === 4) {
+                    precioEstimado = piesCubico*40;
                 }
             }
             
@@ -141,48 +152,47 @@ window.addEventListener('DOMContentLoaded', () => {
          * de acuero a su peso excedente
          */
 
-         const calculoRestoUsa = () => {
-            let btnComprar = document.getElementById('btn-comprar');
-            let areas = calculoPiesCubicos();
-            let piesCubicos = areas[1];
-            let pesoMayor = areas[2];
-            let precio;
+        /*const calculoRestoUsa = () => {
+          let btnComprar = document.getElementById('btn-comprar');
+          let areas = calculoPiesCubicos();
+          let piesCubicos = areas[1];
+          let pesoMayor = areas[2];
+          let precio;
 
-            if( piesCubicos >= 0.01 && piesCubicos <= 1.32){
-                precio = piesCubicos*100;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-12/');
-            }else if(piesCubicos >= 1.33 && piesCubicos <= 2.99 ){
-                precio = piesCubicos*82.70676691729323;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-16/');
-            }else if( piesCubicos >= 3 && piesCubicos <= 3.05) {
-                precio = piesCubicos*43.333333333333333;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-nueva-de-home-depot-15-x-22-x-16/');
-            }else if(piesCubicos > 3.05 && piesCubicos <= 3.1 ) {
-                precio = piesCubicos*45.7516339869281;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-18-x-18-x-16/');
-
-            }else{
-                alert('Para envíos de mayor longitud debe realizar por otro método');
-            }
+          if( piesCubicos >= 0.01 && piesCubicos <= 1.32){
+            precio = piesCubicos*100;
+            btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-12/');
+          }else if(piesCubicos >= 1.33 && piesCubicos <= 2.99 ){
+            precio = piesCubicos*82.70676691729323;
+            btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-16/');
+          }else if( piesCubicos >= 3 && piesCubicos <= 3.05) {
+            precio = piesCubicos*43.333333333333333;
+            btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-nueva-de-home-depot-15-x-22-x-16/');
+          }else if(piesCubicos > 3.05 && piesCubicos <= 3.1 ) {
+            precio = piesCubicos*45.7516339869281;
+            btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-18-x-18-x-16/');
+          }else{
+            alert('Para envíos de mayor longitud debe realizar por otro método');
+          }
             
-            if(pesoMayor > 50 ) {
-                let costoExtra = (pesoMayor-50)*1.25;
-                precio = precio+costoExtra;
-            }
+          if(pesoMayor > 50 ) {
+            let costoExtra = (pesoMayor-50)*1.25;
+            precio = precio+costoExtra;
+          }
 
-            iDimensiones.value = areas[0];
-            iPiesCubico.value = parseFloat(areas[1].toFixed(2));
-            iPreEstimado.value = precio + ' USD';
-        }
+          iDimensiones.value = areas[0];
+          iPiesCubico.value = parseFloat(areas[1].toFixed(2));
+          iPreEstimado.value = precio + ' USD';
+        }*/
 
         formCalMarit.addEventListener('change', e => {
-            let selectOrigen = document.getElementById('select-origen').value;
-
+            //let selectOrigen = document.getElementById('select-origen').value;
+            calculoEnvio();
+            /*
             if( selectOrigen === 'resto-usa'){
                 calculoRestoUsa();
             }else{
-                calculoEnvio();
-            }
+            }*/
         });
     }
 
