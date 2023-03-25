@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
          * Obtenemos los valores de los input en: iLargo, iAncho, iAlto.
          * Calculamos el Volumen
          * Obtenemos el Peso Volumetrico
-         * Registramos en un matris los daos para sacarlos de la Funcion
+         * Registramos en un matriz los daos para sacarlos de la Funcion
          */
 
         const calculoPiesCubicos = () => {
@@ -198,20 +198,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     
 
-    /**
-     * Calculo de las tarifas para los envios Aereos
-     */
+    /**CAL PRICE ENVIOS AEREOS*/
     if(document.getElementById('cal-aereo')){
         let camPrecioEstimado = document.getElementById('precio-estimado');
         let iPesoVol = document.getElementById('peso-vol');
         let pesoMayor = document.getElementById('peso-mayor');
         let campoPiesCubicos = document.getElementById('pies-cubicos');
 
-        /**
-         * Obtener el peso cvolumetris que se usa para
-         * comparar pesos de calculo entre este y el peso real.
-         * 
-         */
+        /** GET PESO VOL Y COMPARAR CON PES O REAL*/
         const obtenerPesos = () => {
             let vAlto = document.getElementById('alto').value;
             let vLargo = document.getElementById('largo').value;
@@ -230,25 +224,6 @@ window.addEventListener('DOMContentLoaded', () => {
             return pesosCalculos;
         }
 
-        /**
-         * Realizamos el calculo del precio estimado para los envios
-         * a Venzuela
-         */
-
-        const calculoEnvioAereo = () => {
-            let regionEnvio = parseFloat(document.getElementById('origen-envio').value);
-            let pesos = obtenerPesos();
-            
-            camPrecioEstimado.value = (pesos[1]*regionEnvio).toFixed(2);
-            iPesoVol.value = pesos[0].toFixed(2);
-            pesoMayor.value = pesos[1].toFixed(2);
-        }
-        calculoEnvioAereo();
-
-        /**
-         * Funciones para las operaciones de los envios a mexico
-         */
-
         /* Realizamos el calculo de los Pies Cubicos */
 
         const calPiesCubicos = () => {
@@ -259,6 +234,29 @@ window.addEventListener('DOMContentLoaded', () => {
             let piesCubico = dimensiones/1728;
             return piesCubico;
         }
+
+        /**
+         * Realizamos el calculo del precio estimado para los envios
+         * a Venzuela
+         */
+
+        const calculoEnvioAereo = () => {
+            let regionEnvio = parseFloat(document.getElementById('origen-envio').value);
+            let piesCubico = parseFloat(calPiesCubicos().toFixed(2));
+            let pesos = obtenerPesos();
+            
+            camPrecioEstimado.value = (pesos[1]*regionEnvio).toFixed(2);
+            iPesoVol.value = pesos[0].toFixed(2);
+            pesoMayor.value = pesos[1].toFixed(2);
+            campoPiesCubicos.value = piesCubico;
+        }
+        calculoEnvioAereo();
+
+        /**
+         * Funciones para las operaciones de los envios a mexico
+         */
+
+        
 
         /**
          * Calculamos los montos de acuerdo a los pies cubicos de los paquetes
