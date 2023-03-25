@@ -185,12 +185,9 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     
 
-    /**
-     * Calculo de las tarifas para los envios Aereos
-     */
+    /**CALCULO TARIFAS PARA ENVIOS AEREOS*/
     if(document.getElementById('cal-aereo')){
         let camPrecioEstimado = document.getElementById('precio-estimado');
         let iPesoVol = document.getElementById('peso-vol');
@@ -220,11 +217,7 @@ window.addEventListener('DOMContentLoaded', () => {
             return pesosCalculos;
         }
 
-        /**
-         * Realizamos el calculo del precio estimado para los envios
-         * a Venzuela
-         */
-
+        /**CALC PRICE TO VENEZUELA*/
         const calculoEnvioAereo = () => {
             let regionEnvio = parseFloat(document.getElementById('origen-envio').value);
             let pesos = obtenerPesos();
@@ -235,12 +228,9 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         calculoEnvioAereo();
 
-        /**
-         * Funciones para las operaciones de los envios a mexico
-         */
+        /**FUNC TO SEND MEXICO*/
 
-        /* Realizamos el calculo de los Pies Cubicos */
-
+        /**CALC PIES CUBICOS*/
         const calPiesCubicos = () => {
             let iLargo = parseInt(document.getElementById('largo').value);
             let iAncho = parseInt(document.getElementById('ancho').value);
@@ -250,16 +240,12 @@ window.addEventListener('DOMContentLoaded', () => {
             return piesCubico;
         }
 
-        /**
-         * Calculamos los montos de acuerdo a los pies cubicos de los paquetes
-         */
+        /**CALC PRICE FOR PIES OF PACKAGE*/
         const calEnviosMexico = () => {
             let piesCubico = parseFloat(calPiesCubicos().toFixed(2));
             let pesos = obtenerPesos();
    
-            /**
-             * Verificacion de peso exedente
-             */
+            /**Verificacion de peso exedente*/
 
             const calculoCostoEnvio = (pesoSuperior, pesoLimite, tasa) => {
                 if(pesoSuperior > pesoLimite) { // Verificamos si el pero supera el limite
@@ -306,11 +292,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('cal-aereo').addEventListener('change', () => {
             let selDestinoEnvio = document.getElementById('destino-envio').value;
+            let btnComprar = document.querySelector('#btnAereo-comprar');
 
             if (selDestinoEnvio === 'mexico') {
                 calEnviosMexico();
+                btnComprar.setAttribute('href', 'https://enviosmx.jdgcargo.com/product/envios-aereos-a-mexico/');
             }else{
                 calculoEnvioAereo();
+                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/envios-aereos-a-venezuela/');
             } 
         });
     }
