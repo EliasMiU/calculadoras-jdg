@@ -6,12 +6,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const formCalMarit =  document.getElementById('cal-maritimo');
 
         /**
-         * Calculo de las dimensiones y Datos para los calculos
+         * CALCULO DE LA DIMENSIONES DEL 
          * 
          * Obtenemos los valores de los input en: iLargo, iAncho, iAlto.
          * Calculamos el Volumen
          * Obtenemos el Peso Volumetrico
-         * Registramos en un matris los daos para sacarlos de la Funcion
+         * Registramos en un matriz los daos para sacarlos de la Funcion
          */
 
         const calculoPiesCubicos = () => {
@@ -19,22 +19,16 @@ window.addEventListener('DOMContentLoaded', () => {
             let iAncho = parseInt(document.getElementById('inputAncho').value);
             let iAlto = parseInt(document.getElementById('inputAlto').value);
             let pesoReal = document.getElementById('pesoReal').value;
-            // Volumen
             let volumen = iAlto*iAncho*iLargo; 
-            // Peso Volumetrico
             let pesoVol = volumen/1728;
-            //peso Mayor
+            console.log(pesoVol);
             let pesoMayor = pesoReal > pesoVol ? pesoReal : pesoVol;
-            // Matriz
             let piesDatos = [volumen, pesoVol, pesoMayor];
 
             return piesDatos;
         }
 
-        /**
-         * Funcion para el Calculo del Precio del Envio
-         * 
-         */
+        /**FUNC TO CALC PRICE ENVIOS MARITIMOS*/
 
         function calculoEnvio(){
             let iOrigen = parseInt(document.getElementById('select-origen').value);
@@ -64,6 +58,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*21.05;
                     }
+                } else if( iOrigen === 4){
+                    precioEstimado = piesCubico*100;
                 }
             } else if (piesCubico >= 2.86 && piesCubico <= 4 ) {
                 if ( iOrigen === 0 ) { 
@@ -84,8 +80,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22.33;
                     }
+                } else if(iOrigen === 4){
+                    precioEstimado = piesCubico*82.70676691729323;
                 }
-
             } else if ( piesCubico > 4 && piesCubico <= 6  ) {
                 if ( iOrigen === 0 ) { 
                     if (iDestino === 0) {
@@ -105,6 +102,30 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22;
                     }
+                } else if (iOrigen === 4){
+                    precioEstimado = piesCubico*43.333333333333333;
+                }
+            } else if(piesCubico > 6 && piesCubico < 8) {
+                if ( iOrigen === 0 ) {
+                    if (iDestino === 0) { 
+                        precioEstimado = piesCubico*16; 
+                    }else{
+                        precioEstimado = piesCubico*19;
+                    }
+                } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
+                    if (iDestino === 0) { 
+                        precioEstimado = piesCubico*31.11;
+                    }else{
+                        precioEstimado = piesCubico*36.66;
+                    }
+                } else if (iOrigen === 3 ) { 
+                    if (iDestino === 0) {
+                        precioEstimado = piesCubico*19;
+                    }else{
+                        precioEstimado = piesCubico*22;
+                    }
+                } else if (iOrigen === 4) {
+                    precioEstimado = piesCubico*45.7516339869281;
                 }
             } else {
                 if ( iOrigen === 0 ) {
@@ -125,6 +146,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     }else{
                         precioEstimado = piesCubico*22;
                     }
+                } else if (iOrigen === 4) {
+                    precioEstimado = piesCubico*40;
                 }
             }
             
@@ -132,61 +155,15 @@ window.addEventListener('DOMContentLoaded', () => {
             iDimensiones.value = dimensiones + ' in';
             iPiesCubico.value = parseFloat( piesCubico.toFixed(2) ) + ' Ft3';
         }
-        
+
         calculoEnvio();
 
-        /**
-         * Calculos envios si salen de Resto de USA
-         * Aqui tambien definimos si el envio vale mas del precio estandar
-         * de acuero a su peso excedente
-         */
-
-         const calculoRestoUsa = () => {
-            let btnComprar = document.getElementById('btn-comprar');
-            let areas = calculoPiesCubicos();
-            let piesCubicos = areas[1];
-            let pesoMayor = areas[2];
-            let precio;
-
-            if( piesCubicos >= 0.01 && piesCubicos <= 1.32){
-                precio = piesCubicos*100;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-12/');
-            }else if(piesCubicos >= 1.33 && piesCubicos <= 2.99 ){
-                precio = piesCubicos*82.70676691729323;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-extra-small-12-x-12-x-16/');
-            }else if( piesCubicos >= 3 && piesCubicos <= 3.05) {
-                precio = piesCubicos*43.333333333333333;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-nueva-de-home-depot-15-x-22-x-16/');
-            }else if(piesCubicos > 3.05 && piesCubicos <= 3.1 ) {
-                precio = piesCubicos*45.7516339869281;
-                btnComprar.setAttribute('href', 'http://tienda.jdgcargo.com/product/caja-medium-18-x-18-x-16/');
-
-            }else{
-                alert('Para envíos de mayor longitud debe realizar por otro método');
-            }
-            
-            if(pesoMayor > 50 ) {
-                let costoExtra = (pesoMayor-50)*1.25;
-                precio = precio+costoExtra;
-            }
-
-            iDimensiones.value = areas[0];
-            iPiesCubico.value = parseFloat(areas[1].toFixed(2));
-            iPreEstimado.value = precio + ' USD';
-        }
-
         formCalMarit.addEventListener('change', e => {
-            let selectOrigen = document.getElementById('select-origen').value;
-
-            if( selectOrigen === 'resto-usa'){
-                calculoRestoUsa();
-            }else{
-                calculoEnvio();
-            }
+            calculoEnvio();
+            
         });
     }
     
-
     /**CALCULO TARIFAS PARA ENVIOS AEREOS*/
     if(document.getElementById('cal-aereo')){
         let camPrecioEstimado = document.getElementById('precio-estimado');
@@ -194,43 +171,23 @@ window.addEventListener('DOMContentLoaded', () => {
         let pesoMayor = document.getElementById('peso-mayor');
         let campoPiesCubicos = document.getElementById('pies-cubicos');
 
-        /**
-         * Obtener el peso cvolumetris que se usa para
-         * comparar pesos de calculo entre este y el peso real.
-         * 
-         */
+        /** OPTENER PESO VOL Y COMPARAR CON PESO REAL*/
         const obtenerPesos = () => {
             let vAlto = document.getElementById('alto').value;
             let vLargo = document.getElementById('largo').value;
             let vAncho = document.getElementById('ancho').value;
-            let iPesoReal = parseFloat(document.getElementById('peso-real').value);
-            
-            /* Obtener el volumen */
+            let iPesoReal = parseFloat(document.getElementById('peso-real').value); 
+        
             let volumen = vAlto*vLargo*vAncho;
-
-            /* Obtener peso volumetrico */
             let pesoVolumetrico = volumen/166;
-
-            /*Obtener peso para el calculo */
             let pesoMayor = iPesoReal > pesoVolumetrico ? iPesoReal : pesoVolumetrico;
-            let pesosCalculos = [ pesoVolumetrico, pesoMayor]
+            let pesosCalculos = [ pesoVolumetrico, pesoMayor];
+
             return pesosCalculos;
         }
 
-        /**CALC PRICE TO VENEZUELA*/
-        const calculoEnvioAereo = () => {
-            let regionEnvio = parseFloat(document.getElementById('origen-envio').value);
-            let pesos = obtenerPesos();
-            
-            camPrecioEstimado.value = (pesos[1]*regionEnvio).toFixed(2);
-            iPesoVol.value = pesos[0].toFixed(2);
-            pesoMayor.value = pesos[1].toFixed(2);
-        }
-        calculoEnvioAereo();
 
-        /**FUNC TO SEND MEXICO*/
-
-        /**CALC PIES CUBICOS*/
+        /*CALC PIES CUBICOS*/
         const calPiesCubicos = () => {
             let iLargo = parseInt(document.getElementById('largo').value);
             let iAncho = parseInt(document.getElementById('ancho').value);
@@ -240,17 +197,30 @@ window.addEventListener('DOMContentLoaded', () => {
             return piesCubico;
         }
 
-        /**CALC PRICE FOR PIES OF PACKAGE*/
+
+        /**CALC PRECIOS TO VENEZUELA*/
+        const calculoEnvioAereo = () => {
+            let regionEnvio = parseFloat(document.getElementById('origen-envio').value);
+            let piesCubico = parseFloat(calPiesCubicos().toFixed(2));
+            let pesos = obtenerPesos();
+            
+            camPrecioEstimado.value = (pesos[1]*regionEnvio).toFixed(2);
+            iPesoVol.value = pesos[0].toFixed(2);
+            pesoMayor.value = pesos[1].toFixed(2);
+            campoPiesCubicos.value = piesCubico;
+        }
+        calculoEnvioAereo();
+
+        /**FUNC ENVIOS TO MEXICO - PRECIO ESTIMADOS*/
         const calEnviosMexico = () => {
             let piesCubico = parseFloat(calPiesCubicos().toFixed(2));
             let pesos = obtenerPesos();
    
-            /**Verificacion de peso exedente*/
-
             const calculoCostoEnvio = (pesoSuperior, pesoLimite, tasa) => {
-                if(pesoSuperior > pesoLimite) { // Verificamos si el pero supera el limite
-                    let costoExtra = (pesoSuperior-pesoLimite)*1.25; //Sacamos el monto a sumer por execedente
-                    let precioEstimado = parseInt((piesCubico*tasa).toFixed()); // Costo de envio
+                /**VERIFICAMOS SI HAY PESO EXCEDENTE */
+                if(pesoSuperior > pesoLimite) { 
+                    let costoExtra = (pesoSuperior-pesoLimite)*1.25; 
+                    let precioEstimado = parseInt((piesCubico*tasa).toFixed());
                     camPrecioEstimado.value = precioEstimado+costoExtra + ' USd';
                 }else{
                     camPrecioEstimado.value = (piesCubico*tasa).toFixed() +' USD';
