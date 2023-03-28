@@ -48,9 +48,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
                     if (iDestino === 0) { 
-                        precioEstimado = piesCubico*30.07;
+                        precioEstimado = piesCubico*50;
                     }else{
-                        precioEstimado = piesCubico*41.35;
+                        precioEstimado = piesCubico*55;
                     }
                 } else if (iOrigen === 3 ) { 
                     if (iDestino === 0) {
@@ -70,9 +70,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
                     if (iDestino === 0) { 
-                        precioEstimado = piesCubico*30;
+                        precioEstimado = piesCubico*33.334;
                     }else{
-                        precioEstimado = piesCubico*38.33;
+                        precioEstimado = piesCubico*41.667;
                     }
                 } else if (iOrigen === 3 ) { 
                     if (iDestino === 0) { 
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 } else if(iOrigen === 4){
                     precioEstimado = piesCubico*82.70676691729323;
                 }
-            } else if ( piesCubico > 4 && piesCubico <= 6  ) {
+            } else if ( piesCubico > 4 && piesCubico <= 5  ) {
                 if ( iOrigen === 0 ) { 
                     if (iDestino === 0) {
                         precioEstimado = piesCubico*14.87; 
@@ -92,9 +92,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if ( (iOrigen === 1) || (iOrigen === 2) ) {
                     if (iDestino === 0) {
-                        precioEstimado = piesCubico*31.11;
+                        precioEstimado = piesCubico*31.112;
                     }else{
-                        precioEstimado = piesCubico*36.66;
+                        precioEstimado = piesCubico*36.667;
                     }
                 } else if (iOrigen === 3 ) { 
                     if (iDestino === 0) {
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 } else if (iOrigen === 4){
                     precioEstimado = piesCubico*43.333333333333333;
                 }
-            } else if(piesCubico > 6 && piesCubico < 8) {
+            } else if(piesCubico > 5 && piesCubico < 6.15) {
                 if ( iOrigen === 0 ) {
                     if (iDestino === 0) { 
                         precioEstimado = piesCubico*16; 
@@ -114,9 +114,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
                     if (iDestino === 0) { 
-                        precioEstimado = piesCubico*31.11;
+                        precioEstimado = piesCubico*32.381;
                     }else{
-                        precioEstimado = piesCubico*36.66;
+                        precioEstimado = piesCubico*37.143;
                     }
                 } else if (iOrigen === 3 ) { 
                     if (iDestino === 0) {
@@ -127,7 +127,29 @@ window.addEventListener('DOMContentLoaded', () => {
                 } else if (iOrigen === 4) {
                     precioEstimado = piesCubico*45.7516339869281;
                 }
-            } else {
+            } else if(piesCubico > 6.15 && piesCubico < 8) {
+                if ( iOrigen === 0 ) {
+                    if (iDestino === 0) { 
+                        precioEstimado = piesCubico*16; 
+                    }else{
+                        precioEstimado = piesCubico*19;
+                    }
+                } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
+                    if (iDestino === 0) { 
+                        precioEstimado = piesCubico*40.586;
+                    }else{
+                        precioEstimado = piesCubico*44.644
+                    }
+                } else if (iOrigen === 3 ) { 
+                    if (iDestino === 0) {
+                        precioEstimado = piesCubico*19;
+                    }else{
+                        precioEstimado = piesCubico*22;
+                    }
+                } else if (iOrigen === 4) {
+                    precioEstimado = piesCubico*45.7516339869281;
+                }
+            }else {
                 if ( iOrigen === 0 ) {
                     if (iDestino === 0) { 
                         precioEstimado = piesCubico*16; 
