@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let pesoVol = volumen/1728;
             console.log(pesoVol);
             let pesoMayor = pesoReal > pesoVol ? pesoReal : pesoVol;
-            let piesDatos = [volumen, pesoVol, pesoMayor];
+            let piesDatos = [volumen, pesoVol, pesoMayor, iLargo, iAncho, iAlto];
 
             return piesDatos;
         }
@@ -36,8 +36,14 @@ window.addEventListener('DOMContentLoaded', () => {
             let areas = calculoPiesCubicos();
             let dimensiones = areas[0];
             let piesCubico = areas[1];
+            let alto = areas[5];
+            let ancho = areas[4];
+            let largo = areas[3];
+            console.log(alto, ancho, largo)
 
             let precioEstimado;
+            let seguro;
+            let impuesto;
 
             if ( (piesCubico > 0.01) && (piesCubico < 2.85) ){
                 if ( iOrigen === 0 ) { 
@@ -70,9 +76,17 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if ( (iOrigen === 1) || (iOrigen === 2) ) { 
                     if (iDestino === 0) { 
-                        precioEstimado = piesCubico*33.334;
+                        if((alto === 15) && (ancho === 22) && (largo === 16)) {
+                            precioEstimado = 100;
+                        } else {
+                            precioEstimado = piesCubico*33.334;
+                        }
                     }else{
-                        precioEstimado = piesCubico*41.667;
+                        if((alto === 15) && (ancho === 22) && (largo === 16)) {
+                            precioEstimado = 125;
+                        } else {
+                            precioEstimado = piesCubico*41.667;
+                        }
                     }
                 } else if (iOrigen === 3 ) { 
                     if (iDestino === 0) { 
@@ -172,6 +186,15 @@ window.addEventListener('DOMContentLoaded', () => {
                     precioEstimado = piesCubico*40;
                 }
             }
+            /**
+             * Calcular los impuestos y seguro
+             */
+
+            seguro = precioEstimado*0.38;
+            impuesto = precioEstimado*0.12;
+
+            precioEstimado = precioEstimado+seguro+impuesto+2;
+            
             
             iPreEstimado.value = precioEstimado.toFixed(2) + ' USD';
             iDimensiones.value = dimensiones + ' in';
@@ -182,7 +205,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         formCalMarit.addEventListener('change', e => {
             calculoEnvio();
-            
         });
     }
     
