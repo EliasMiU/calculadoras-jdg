@@ -33,13 +33,15 @@ window.addEventListener('DOMContentLoaded', () => {
         function calculoEnvio(){
             let iOrigen = parseInt(document.getElementById('select-origen').value);
             let iDestino = parseInt(document.getElementById('select-destino').value);
+            let precioCaja = parseInt(document.getElementById('costoCaja').value);
             let areas = calculoPiesCubicos();
             let dimensiones = areas[0];
             let piesCubico = areas[1];
             let alto = areas[5];
             let ancho = areas[4];
             let largo = areas[3];
-            console.log(alto, ancho, largo)
+            let checkSeguro = document.getElementById('checkSeguro').checked;
+            console.log(alto, ancho, largo, precioCaja, checkSeguro);
 
             let precioEstimado;
             let seguro;
@@ -190,13 +192,54 @@ window.addEventListener('DOMContentLoaded', () => {
              * Calcular los impuestos y seguro
              */
 
-            seguro = precioEstimado*0.38;
-            impuesto = precioEstimado*0.12;
+            //Porcentaje del precio de la Caja
+            
+            impuesto = precioCaja<=100 ? 38 : precioCaja*0.38;
+            console.log(impuesto);
 
-            precioEstimado = precioEstimado+seguro+impuesto+2;
+            //Porcentaje del seguro si es seleccionado
+            seguro = precioCaja*0.12;
+
+            //Nuevo precio estimado con los tax
+            if(checkSeguro){
+                precioEstimado = precioEstimado+impuesto+seguro+2;
+            }else {
+                precioEstimado = precioEstimado+impuesto+2;
+            }
+
+            /**
+             * Realizamos las conversione spara redondear los precios
+             */
+            let numeroEntero = Math.trunc(precioEstimado);
+            console.log(numeroEntero);
+
+            let enteroString = numeroEntero.toString();
+            let ultimoNumeroString = enteroString[enteroString.length-1];
+            let ultimoNumeroInt = parseInt(ultimoNumeroString);
+
+            switch (ultimoNumeroInt) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    numeroEntero += 5-ultimoNumeroInt;
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    numeroEntero += 10-ultimoNumeroInt;
+                    break;
+            }
+
+
+
+
+            console.log(ultimoNumeroString, ultimoNumeroInt, precioEstimado);
+            console.log("El precio de redondeo "+ precioEstimado);
+         
             
-            
-            iPreEstimado.value = precioEstimado.toFixed(2) + ' USD';
+            iPreEstimado.value = numeroEntero.toFixed(2) + ' USD';
             iDimensiones.value = dimensiones + ' in';
             iPiesCubico.value = parseFloat( piesCubico.toFixed(2) ) + ' Ft3';
         }
