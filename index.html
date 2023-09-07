@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/index.js"></script>
-    <script src="js/calculate.js"></script>
+    <script src="js/calculoEnvios.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
@@ -38,8 +38,17 @@
                         <div class="col-md-4">
                           <label for="select-destino" class="form-label">Destino de envió</label>
                           <select id="select-destino" class="form-select" aria-label="Default select example">
-                            <option value="0" selected>Gran Caracas</option>
-                            <option value="1">Resto del Pais</option>
+                            <optgroup label="Chile">
+                                <option value="2">Santiago o Valparaiso</option>
+                                <option value="3">Otras Ciudades</option>
+                            </optgroup>
+                            <optgroup label="Venezuela">
+                                <option value="0">Gran Caracas</option>
+                                <option value="1">Resto del Pais</option>
+                            </optgroup>
+                            <optgroup label="Otros">
+                                <option value="4">Costa Rica</option>
+                            </optgroup>
                           </select>
                         </div>
                         <div class="col-4 col-md-4">
