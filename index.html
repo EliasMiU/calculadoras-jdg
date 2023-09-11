@@ -25,7 +25,7 @@
             <div class="row pt-4 pb-5">
                 <div class="col-12">
                     <form id="cal-maritimo" class="row g-3" >
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <label for="select-origen" class="form-label">Origen de envió</label>
                           <select id="select-origen" class="form-select" aria-label="Default select example">
                             <option value="0" selected>Miami FL</option>
@@ -35,23 +35,21 @@
                             <option value="4">Resto de USA</option>
                           </select>
                         </div>
-                        <div class="col-md-4">
-                          <label for="select-destino" class="form-label">Destino de envió</label>
-                          <select id="select-destino" class="form-select" aria-label="Default select example">
-                            <optgroup label="Chile">
-                                <option value="2">Santiago o Valparaiso</option>
-                                <option value="3">Otras Ciudades</option>
-                            </optgroup>
-                            <optgroup label="Venezuela">
-                                <option value="0">Gran Caracas</option>
-                                <option value="1">Resto del Pais</option>
-                            </optgroup>
-                            <optgroup label="Otros">
-                                <option value="4">Costa Rica</option>
-                            </optgroup>
+                        <div class="col-md-3">
+                          <label for="pais-destino" class="form-label">Pais destino</label>
+                          <select id="pais-destino" class="form-select" aria-label="Default select example">
+                            <option value="2">Costa Rica</option>
+                            <option value="1">Chile</option>
+                            <option value="0">Venezuela</option>
                           </select>
                         </div>
-                        <div class="col-4 col-md-4">
+                        <div class="col-md-3">
+                          <label for="select-destino" class="form-label">Ciudad destino</label>
+                          <select id="select-destino" class="form-select" aria-label="Default select example">
+                            <option value="-">-</option>
+                          </select>
+                        </div>
+                        <div class="col-4 col-md-3">
                           <label for="pesoReal" class="form-label">Peso Real</label>
                           <input id="pesoReal" type="number" class="form-control" value="0">
                         </div>
